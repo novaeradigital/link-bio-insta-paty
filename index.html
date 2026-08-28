@@ -1,0 +1,438 @@
+<title>Dona do Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+/* ── Tokens ─────────────────────────── */
+:root {
+  --black:    #010101;
+  --surface:  #111111;
+  --surface2: #1c1c1c;
+  --border:   rgba(255,255,255,0.07);
+  --red:      #FE2C55;
+  --cyan:     #25F4EE;
+  --white:    #FFFFFF;
+  --muted:    #7a7a7a;
+  --whatsapp: #25D366;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 20px 72px;
+  /* faint dual-glow backdrop */
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(254,44,85,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 100%, rgba(37,244,238,0.06) 0%, transparent 70%);
+}
+
+/* ── Page container ─────────────────── */
+.page {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Profile ────────────────────────── */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 44px;
+  text-align: center;
+}
+
+.avatar-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: linear-gradient(135deg, var(--red) 0%, var(--cyan) 100%);
+  flex-shrink: 0;
+}
+
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--white);
+  user-select: none;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  /* TikTok chromatic-aberration split */
+  text-shadow:
+    -2px 0 0 var(--red),
+     2px 0 0 var(--cyan);
+}
+
+.profile-handle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  text-transform: lowercase;
+  margin-top: -6px;
+}
+
+.profile-bio {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  max-width: 310px;
+  text-wrap: balance;
+}
+
+/* ── Section label ──────────────────── */
+.section-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* ── Cards ──────────────────────────── */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  position: relative;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card:hover.accent-red  { box-shadow: 0 8px 32px rgba(254,44,85,0.18); }
+.card:hover.accent-cyan { box-shadow: 0 8px 32px rgba(37,244,238,0.14); }
+.card:hover.accent-both { box-shadow: 0 8px 32px rgba(254,44,85,0.12), 0 8px 32px rgba(37,244,238,0.10); }
+
+.card:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* top accent bar */
+.card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+}
+
+.accent-red::before  { background: var(--red); }
+.accent-cyan::before { background: var(--cyan); }
+.accent-both::before { background: linear-gradient(90deg, var(--red), var(--cyan)); }
+
+.card-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 100px;
+  width: fit-content;
+  margin-bottom: 6px;
+}
+
+.pill-red  { background: rgba(254,44,85,0.14);  color: var(--red);  }
+.pill-cyan { background: rgba(37,244,238,0.11); color: var(--cyan); }
+.pill-both { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.card-desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.55;
+  margin-top: 2px;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  margin-top: 14px;
+  width: fit-content;
+  transition: opacity 0.15s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card-cta:hover { opacity: 0.82; }
+
+.cta-red  { background: var(--red);  color: var(--white); }
+.cta-cyan { background: var(--cyan); color: var(--black); }
+.cta-both {
+  background: linear-gradient(90deg, var(--red), #cc1f8a, var(--cyan));
+  color: var(--white);
+}
+
+/* ── Separator ──────────────────────── */
+.sep {
+  height: 1px;
+  background: var(--border);
+  margin: 36px 0;
+}
+
+/* ── Contact block ──────────────────── */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 24px 20px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.contact-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--whatsapp);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(37,211,102,0.2);
+  transition: background 0.15s ease;
+  margin-top: 2px;
+}
+
+.contact-link:hover { background: rgba(37,211,102,0.08); }
+.contact-link:focus-visible { outline: 2px solid var(--whatsapp); outline-offset: 2px; }
+
+/* ── Footer ─────────────────────────── */
+footer {
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  font-size: 18px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.social-link:hover {
+  background: var(--surface2);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.social-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.copyright {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.06em;
+}
+
+/* ── TikTok logo mark (decorative) ─── */
+.tt-mark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card-cta, .social-link, .contact-link { transition: none; }
+}
+</style>
+
+<!-- decorative TikTok mark -->
+<span class="tt-mark" aria-hidden="true">♪</span>
+
+<main class="page">
+
+  <!-- ── Profile ── -->
+  <section class="profile" aria-label="Perfil">
+    <div class="avatar-ring" role="img" aria-label="Foto de perfil">
+      <div class="avatar-inner">DS</div>
+    </div>
+    <h1 class="profile-name">Seu Nome</h1>
+    <p class="profile-handle">@seuarroba</p>
+    <p class="profile-bio">
+      Especialista em TikTok Shop — ajudando empreendedoras a vender todos os dias dentro da plataforma.
+    </p>
+  </section>
+
+  <!-- ── Courses ── -->
+  <p class="section-label">Cursos &amp; Mentorias</p>
+
+  <div class="cards">
+
+    <!-- Card 1 -->
+    <a href="#" class="card accent-red" aria-label="TikTok Shop Pro — saiba mais">
+      <div class="card-body">
+        <span class="card-pill pill-red">🔥 Curso completo</span>
+        <h2 class="card-title">TikTok Shop Pro</h2>
+        <p class="card-desc">
+          Do cadastro à primeira venda: o método completo para montar, ativar e escalar sua loja dentro do TikTok Shop.
+        </p>
+        <span class="card-cta cta-red">Quero acessar →</span>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="card accent-cyan" aria-label="Plano 14 dias para ativar TikTok Shop — saiba mais">
+      <div class="card-body">
+        <span class="card-pill pill-cyan">📅 Plano passo a passo</span>
+        <h2 class="card-title">Plano 14 dias para ativar TikTok Shop</h2>
+        <p class="card-desc">
+          Um guia diário e direto ao ponto para sair do zero e ter sua loja ativa em duas semanas.
+        </p>
+        <span class="card-cta cta-cyan">Ver o plano →</span>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="card accent-both" aria-label="Mentoria Dona do Shop — saiba mais">
+      <div class="card-body">
+        <span class="card-pill pill-both">👑 Mentoria exclusiva</span>
+        <h2 class="card-title">Mentoria Dona do Shop</h2>
+        <p class="card-desc">
+          Acompanhamento individual para quem quer dominar o TikTok Shop com estratégia, suporte e resultado real.
+        </p>
+        <span class="card-cta cta-both">Quero a mentoria →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── Contact ── -->
+  <div class="sep" role="separator"></div>
+
+  <div class="contact">
+    <p class="contact-title">Ficou com dúvidas?</p>
+    <p class="contact-desc">Fale com a minha equipe pelo WhatsApp e descubra qual é o melhor caminho pra você.</p>
+    <a href="https://wa.me/5500000000000" class="contact-link" target="_blank" rel="noopener">
+      <!-- WhatsApp icon via text -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <nav class="socials" aria-label="Redes sociais">
+      <a href="#" class="social-link" aria-label="Instagram" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-link" aria-label="TikTok" title="TikTok">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/5500000000000" class="social-link" aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+    </nav>
+    <p class="copyright">© 2026 · Todos os direitos reservados</p>
+  </footer>
+
+</main>
