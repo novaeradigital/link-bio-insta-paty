@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página não encontrada — Patrícia Passos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  --black:   #010101;
+  --surface: #111111;
+  --border:  rgba(255,255,255,0.07);
+  --red:     #FE2C55;
+  --cyan:    #25F4EE;
+  --white:   #FFFFFF;
+  --muted:   #7a7a7a;
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 0%,   rgba(254,44,85,0.07)  0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 100%, rgba(37,244,238,0.06) 0%, transparent 70%);
+  text-align: center;
+}
+
+.wrap {
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.code {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--red), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  user-select: none;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 300px;
+}
+
+.sep {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--cyan));
+  border-radius: 2px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  text-decoration: none;
+  margin-top: 8px;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.btn:hover {
+  background: #1c1c1c;
+  border-color: rgba(255,255,255,0.22);
+}
+
+.notice {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-top: 16px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404</div>
+    <div class="sep"></div>
+    <p class="title">Esta página não existe</p>
+    <p class="desc">
+      O endereço que você tentou acessar não existe neste domínio.<br>
+      Volte para a página principal da Patrícia Passos.
+    </p>
+    <a href="/" class="btn">
+      ← Voltar ao início
+    </a>
+    <p class="notice">
+      Este domínio é de uso exclusivo de Patrícia Passos.<br>
+      Tentativas de uso não autorizado são registradas.
+    </p>
+  </div>
+</body>
+</html>
